@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="even">#ff00a5d8</color>
+    <color name="odd">#79CFFF</color>
+    <color name="background">#00BFFF</color>
+    <color name="button_normal">#00BFFF</color>
+    <color name="button_focused">#ff00a9e1</color>
+    <color name="button_pressed">#ff009ed2</color>
+</resources>

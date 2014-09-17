@@ -1,0 +1,55 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="android:buttonStyle">@style/AppTheme.Button</item>
+        <item name="android:editTextStyle">@style/AppTheme.EditText</item>
+    </style>
+
+    <style name="AppTheme.Button" parent="android:Widget.Holo.Light.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:background">@drawable/button</item>
+
+    </style>
+
+    <style name="AppTheme.LinearLayout">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="AppTheme.EditText" parent="android:Widget.Holo.Light.EditText">
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:enabled">false</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:layout_marginBottom">-8dp</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">#ff5c5c5c</item>
+        <item name="android:maxLength">4</item>
+    </style>
+
+    <style name="AppTheme.HorizontalLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="AppTheme.TextView" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:textColor">#ff5c5c5c</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+
+</resources>

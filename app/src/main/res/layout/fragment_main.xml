@@ -1,0 +1,199 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff4f4f4"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity$PlaceholderFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/AppTheme.LinearLayout"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/AppTheme.TextView"
+                android:text="Total Credits" />
+
+            <EditText
+                android:id="@+id/et_total_cr"
+                style="@style/AppTheme.EditText"
+                android:hint="12.0" />
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/AppTheme.TextView"
+                android:text="GPA" />
+
+            <EditText
+                android:id="@+id/et_gpa"
+                style="@style/AppTheme.EditText"
+                android:hint="3.94" />
+        </LinearLayout>
+
+        <View style="@style/AppTheme.HorizontalLine" />
+
+        <LinearLayout
+            style="@style/AppTheme.LinearLayout"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_credit"
+                style="@style/AppTheme.TextView"
+                android:text="Credit" />
+
+            <EditText
+                android:id="@+id/et_credit"
+                style="@style/AppTheme.EditText"
+                android:hint="@string/credit_hint" />
+        </LinearLayout>
+
+        <View style="@style/AppTheme.HorizontalLine" />
+
+        <LinearLayout style="@style/AppTheme.LinearLayout">
+
+            <Button
+                android:id="@+id/btn_cr_1"
+                style="@style/AppTheme.Button"
+                android:text="1.0" />
+
+            <Button
+                android:id="@+id/btn_cr_2"
+                style="@style/AppTheme.Button"
+                android:text="1.5" />
+
+            <Button
+
+                android:id="@+id/btn_cr_3"
+                style="@style/AppTheme.Button"
+                android:text="2.0" />
+
+            <Button
+                android:id="@+id/btn_cr_4"
+                style="@style/AppTheme.Button"
+                android:layout_marginRight="0dp"
+                android:text="3.0" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/AppTheme.LinearLayout"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_grade"
+                style="@style/AppTheme.TextView"
+                android:text="Grade" />
+
+            <EditText
+                android:id="@+id/et_grade"
+                style="@style/AppTheme.EditText"
+                android:hint="@string/grade_point_hint" />
+        </LinearLayout>
+
+        <View style="@style/AppTheme.HorizontalLine" />
+
+        <LinearLayout style="@style/AppTheme.LinearLayout">
+
+            <Button
+                android:id="@+id/btn_gr_1"
+                style="@style/AppTheme.Button"
+                android:text="A" />
+
+            <Button
+                android:id="@+id/btn_gr_2"
+                style="@style/AppTheme.Button"
+                android:text="A-" />
+
+            <Button
+                android:id="@+id/btn_gr_3"
+                style="@style/AppTheme.Button"
+                android:text="B+" />
+
+            <Button
+                android:id="@+id/btn_gr_4"
+                style="@style/AppTheme.Button"
+                android:layout_marginRight="0dp"
+                android:text="B" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/AppTheme.LinearLayout">
+
+            <Button
+                android:id="@+id/btn_gr_5"
+                style="@style/AppTheme.Button"
+                android:text="B-" />
+
+            <Button
+                android:id="@+id/btn_gr_6"
+                style="@style/AppTheme.Button"
+                android:text="C+" />
+
+            <Button
+                android:id="@+id/btn_gr_7"
+                style="@style/AppTheme.Button"
+                android:text="C" />
+
+            <Button
+                android:id="@+id/btn_gr_8"
+                style="@style/AppTheme.Button"
+                android:layout_marginRight="0dp"
+                android:text="C-" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/AppTheme.LinearLayout"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_gr_9"
+                style="@style/AppTheme.Button"
+                android:text="D" />
+
+            <Button
+                android:id="@+id/btn_gr_10"
+                style="@style/AppTheme.Button"
+                android:layout_marginRight="0dp"
+                android:text="D+" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/AppTheme.LinearLayout"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_add"
+                style="@style/AppTheme.Button"
+                android:text="ADD" />
+
+            <Button
+                android:id="@+id/btn_reset"
+                style="@style/AppTheme.Button"
+                android:layout_marginRight="0dp"
+                android:text="RES" />
+        </LinearLayout>
+
+        <View
+            style="@style/AppTheme.HorizontalLine" />
+
+        <TextView
+            style="@style/AppTheme.TextView"
+            android:textColor="#ffff5f66"
+            android:text="Warning text"
+            android:visibility="gone"
+            android:id="@+id/tv_msg"/>
+
+
+    </LinearLayout>
+</ScrollView>
