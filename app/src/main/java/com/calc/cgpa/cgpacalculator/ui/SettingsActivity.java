@@ -1,8 +1,9 @@
-package com.calc.cgpa.cgpacalculator;
+package com.calc.cgpa.cgpacalculator.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.calc.cgpa.cgpacalculator.ui.fragment.SettingsFragment;
 
 
 public class SettingsActivity extends Activity {

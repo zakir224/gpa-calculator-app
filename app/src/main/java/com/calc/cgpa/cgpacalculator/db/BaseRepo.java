@@ -1,4 +1,4 @@
-package com.calc.cgpa.cgpacalculator;
+package com.calc.cgpa.cgpacalculator.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

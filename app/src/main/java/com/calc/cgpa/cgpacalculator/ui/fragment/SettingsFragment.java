@@ -1,9 +1,17 @@
-package com.calc.cgpa.cgpacalculator;
+package com.calc.cgpa.cgpacalculator.ui.fragment;
 
 import android.os.Bundle;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.widget.Toast;
+
+import com.calc.cgpa.cgpacalculator.model.Credit;
+import com.calc.cgpa.cgpacalculator.preference.CreditPreference;
+import com.calc.cgpa.cgpacalculator.model.Grade;
+import com.calc.cgpa.cgpacalculator.preference.GradePointPreference;
+import com.calc.cgpa.cgpacalculator.R;
+import com.calc.cgpa.cgpacalculator.db.CreditRepo;
+import com.calc.cgpa.cgpacalculator.db.GradeRepo;
 
 import java.util.ArrayList;
 

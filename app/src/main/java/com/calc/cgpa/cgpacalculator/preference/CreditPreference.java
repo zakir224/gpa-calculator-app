@@ -1,4 +1,4 @@
-package com.calc.cgpa.cgpacalculator;
+package com.calc.cgpa.cgpacalculator.preference;
 
 
 
@@ -6,42 +6,43 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.calc.cgpa.cgpacalculator.model.Credit;
+import com.calc.cgpa.cgpacalculator.R;
+
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link android.app.Fragment} subclass.
  *
  */
-public class GradePointPreference extends DialogPreference {
+public class CreditPreference extends DialogPreference {
 
-    private EditText newGrade;
+    private EditText newCredit;
     private EditText newGradePoint;
-    private Grade grade;
-    private IGradeUpdatePreference callback;
+    private Credit credit;
+    private ICreditUpdatePreference callback;
 
-    public GradePointPreference(Context context,AttributeSet attrs,IGradeUpdatePreference callback,Grade grade) {
+    public CreditPreference(Context context, AttributeSet attrs, ICreditUpdatePreference callback, Credit credit) {
         // Required empty public constructor
         super(context,attrs);
-
-        this.grade = grade;
+        this.credit = credit;
         this.callback=callback;
-        setDialogLayoutResource(R.layout.fragment_grade_point_preference);
+        setDialogLayoutResource(R.layout.fragment_credit_point_preference);
     }
 
-    public interface IGradeUpdatePreference {
-        public void GradePreferenceUpdated(Grade grade);
+    public interface ICreditUpdatePreference {
+        public void CreditPreferenceUpdated(Credit credit);
     }
 
 
     @Override
     protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
-        builder.setTitle("Grade Details");
+        builder.setTitle("Credit hrs.");
         builder.setNegativeButton("Save", null);
         builder.setNegativeButton("Close",this);
 
@@ -61,13 +62,11 @@ public class GradePointPreference extends DialogPreference {
     }
 
     private void setValues() {
-        newGrade.setText(grade.getGradeName());
-        newGradePoint.setText(String.valueOf(grade.getGradePoint()));
+        newCredit.setText(String.valueOf(credit.getCreditValue()));
     }
 
     private void grabViews(View view) {
-        newGrade = (EditText)view.findViewById(R.id.preference_et_grade);
-        newGradePoint = (EditText)view.findViewById(R.id.preference_et_grade_point);
+        newCredit = (EditText)view.findViewById(R.id.preference_et_credit);
     }
 
     @Override
@@ -84,8 +83,7 @@ public class GradePointPreference extends DialogPreference {
     }
 
     private void onDialogClose() {
-        grade.setGradeName(newGrade.getText().toString());
-        grade.setGradePoint(Double.valueOf(newGradePoint.getText().toString()));
-        callback.GradePreferenceUpdated(grade);
+        credit.setCreditValue(Double.valueOf(newCredit.getText().toString()));
+        callback.CreditPreferenceUpdated(credit);
     }
 }

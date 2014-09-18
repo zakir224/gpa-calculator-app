@@ -1,29 +1,12 @@
-package com.calc.cgpa.cgpacalculator;
+package com.calc.cgpa.cgpacalculator.ui;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.ProgressDialog;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
-import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Space;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.calc.cgpa.cgpacalculator.preference.DefaultPreferences;
+import com.calc.cgpa.cgpacalculator.R;
 
 public class SplashActivity extends Activity {
     /**

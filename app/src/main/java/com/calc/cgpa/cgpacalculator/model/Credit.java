@@ -1,4 +1,4 @@
-package com.calc.cgpa.cgpacalculator;
+package com.calc.cgpa.cgpacalculator.model;
 
 /**
  * Created by Zakir on 9/18/2014.

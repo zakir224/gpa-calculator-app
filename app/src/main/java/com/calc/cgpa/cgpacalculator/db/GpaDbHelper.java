@@ -1,15 +1,17 @@
-package com.calc.cgpa.cgpacalculator;
+package com.calc.cgpa.cgpacalculator.db;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.BaseColumns;
 import android.util.Log;
 
+import com.calc.cgpa.cgpacalculator.model.Credit;
+import com.calc.cgpa.cgpacalculator.model.Grade;
+import com.calc.cgpa.cgpacalculator.model.SemesterResult;
+
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Zakir on 9/18/2014.

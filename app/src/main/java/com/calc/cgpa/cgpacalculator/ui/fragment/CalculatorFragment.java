@@ -1,23 +1,26 @@
-package com.calc.cgpa.cgpacalculator;
+package com.calc.cgpa.cgpacalculator.ui.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.calc.cgpa.cgpacalculator.model.Credit;
+import com.calc.cgpa.cgpacalculator.model.Grade;
+import com.calc.cgpa.cgpacalculator.GradePointAverage;
+import com.calc.cgpa.cgpacalculator.R;
+import com.calc.cgpa.cgpacalculator.adapter.CreditAdapter;
+import com.calc.cgpa.cgpacalculator.adapter.GradeAdapter;
+import com.calc.cgpa.cgpacalculator.db.CreditRepo;
+import com.calc.cgpa.cgpacalculator.db.GradeRepo;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * Created by Zakir on 9/17/2014.

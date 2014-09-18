@@ -1,6 +1,8 @@
-package com.calc.cgpa.cgpacalculator;
+package com.calc.cgpa.cgpacalculator.db;
 
 import android.content.Context;
+
+import com.calc.cgpa.cgpacalculator.model.Grade;
 
 import java.util.ArrayList;
 

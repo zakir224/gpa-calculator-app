@@ -1,6 +1,12 @@
-package com.calc.cgpa.cgpacalculator;
+package com.calc.cgpa.cgpacalculator.preference;
 
 import android.content.Context;
+
+import com.calc.cgpa.cgpacalculator.model.Credit;
+import com.calc.cgpa.cgpacalculator.model.Grade;
+import com.calc.cgpa.cgpacalculator.db.CreditRepo;
+import com.calc.cgpa.cgpacalculator.db.GpaDbHelper;
+import com.calc.cgpa.cgpacalculator.db.GradeRepo;
 
 import java.io.File;
 
