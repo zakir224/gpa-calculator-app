@@ -109,6 +109,7 @@ public class CalculatorFragment extends Fragment {
     }
 
     private void grabUiReferences() {
+        
         creditButtons.put(0, (Button) rootView.findViewById(R.id.btn_cr_1));
         creditButtons.put(1, (Button) rootView.findViewById(R.id.btn_cr_2));
         creditButtons.put(2, (Button) rootView.findViewById(R.id.btn_cr_3));
