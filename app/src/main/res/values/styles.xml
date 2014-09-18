@@ -36,6 +36,13 @@
         <item name="android:maxLength">4</item>
     </style>
 
+    <style name="AppTheme.EditText.Preference">
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">96dp</item>
+        <item name="android:enabled">true</item>
+    </style>
+
     <style name="AppTheme.HorizontalLine">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
@@ -49,6 +56,11 @@
         <item name="android:gravity">bottom</item>
         <item name="android:textColor">#ff5c5c5c</item>
         <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="AppTheme.TextView.Preference">
+        <item name="android:gravity">left</item>
+        <item name="android:layout_height">48dp</item>
     </style>
 
 

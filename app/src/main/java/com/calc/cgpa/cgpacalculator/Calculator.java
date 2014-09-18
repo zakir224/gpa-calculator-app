@@ -1,8 +1,7 @@
 package com.calc.cgpa.cgpacalculator;
 
-import android.content.Intent;
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,19 +9,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.GridView;
 
 
-
-public class MainActivity extends ActionBarActivity {
+public class Calculator extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_calculator);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new CalculatorFragment())
+                    .add(R.id.container, new PlaceholderFragment(getBaseContext()))
                     .commit();
         }
     }
@@ -31,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.calculator, menu);
         return true;
     }
 
@@ -42,7 +40,6 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            startActivity(new Intent(MainActivity.this,SettingsActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -51,5 +48,22 @@ public class MainActivity extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
+    public class PlaceholderFragment extends Fragment {
+
+        Context context;
+        public PlaceholderFragment(Context c) {
+            this.context = context;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
+            GridView gridView = (GridView)rootView.findViewById(R.id.grid_view_credit);
+            //gridView.setAdapter(new CreditAdapter(context,));
+            return rootView;
+        }
+    }
+
 
 }

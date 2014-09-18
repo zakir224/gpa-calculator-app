@@ -1,0 +1,126 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff4f4f4"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity$PlaceholderFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/AppTheme.LinearLayout"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/AppTheme.TextView"
+                android:text="Total Credits" />
+
+            <EditText
+                android:id="@+id/et_total_cr"
+                style="@style/AppTheme.EditText"
+                android:hint="12.0" />
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/AppTheme.TextView"
+                android:text="GPA" />
+
+            <EditText
+                android:id="@+id/et_gpa"
+                style="@style/AppTheme.EditText"
+                android:hint="3.94" />
+        </LinearLayout>
+
+        <View style="@style/AppTheme.HorizontalLine" />
+
+        <LinearLayout
+            style="@style/AppTheme.LinearLayout"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_credit"
+                style="@style/AppTheme.TextView"
+                android:text="Credit" />
+
+            <EditText
+                android:id="@+id/et_credit"
+                style="@style/AppTheme.EditText"
+                android:hint="@string/credit_hint" />
+        </LinearLayout>
+
+        <View style="@style/AppTheme.HorizontalLine" />
+
+        <GridView
+            android:id="@+id/grid_view_credit"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:columnWidth="90dp"
+            android:numColumns="4"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            />
+
+        <LinearLayout
+            style="@style/AppTheme.LinearLayout"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_grade"
+                style="@style/AppTheme.TextView"
+                android:text="Grade" />
+
+            <EditText
+                android:id="@+id/et_grade"
+                style="@style/AppTheme.EditText"
+                android:hint="@string/grade_point_hint" />
+        </LinearLayout>
+
+        <GridView
+            android:id="@+id/grid_view_grade"
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:columnWidth="90dp"
+            android:numColumns="4"
+            android:paddingBottom="8dp"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            />
+
+        <LinearLayout
+            style="@style/AppTheme.LinearLayout"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_add"
+                style="@style/AppTheme.Button"
+                android:text="ADD" />
+
+            <Button
+                android:id="@+id/btn_reset"
+                style="@style/AppTheme.Button"
+                android:layout_marginRight="0dp"
+                android:text="RES" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/AppTheme.TextView"
+            android:textColor="#ffff5f66"
+            android:text="Warning text"
+            android:visibility="gone"
+            android:id="@+id/tv_msg"/>
+    </LinearLayout>
+
+</LinearLayout>

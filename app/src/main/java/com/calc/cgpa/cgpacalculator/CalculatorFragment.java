@@ -1,13 +1,19 @@
 package com.calc.cgpa.cgpacalculator;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -16,12 +22,18 @@ import java.util.Map;
 /**
  * Created by Zakir on 9/17/2014.
  */
-public class CalculatorFragment extends Fragment {
+public class CalculatorFragment extends Fragment implements CreditAdapter.CreditSelectedListener, GradeAdapter.GradeSelectedListener {
 
     private LinkedHashMap<Integer, Button> creditButtons;
     private LinkedHashMap<Integer, Button> gradeButtons;
-    private Double[] credits = {1.0, 1.5, 2.0, 3.0};
-    private Double[] gradePoints = {4.0, 3.67, 3.33, 3.00, 2.67, 2.33, 2.00, 1.67, 1.33, 1.00};
+//    private double[] credits = {1.0, 1.5, 2.0, 3.0};
+//    private double[] gradePoints = {4.0, 3.67, 3.33, 3.00, 2.67, 2.33, 2.00, 1.67, 1.33, 1.00};
+//    private String[] grades = {"A","A-","B+","B","B-","C+","C","C-","D+","D"};
+    Double[] gradesPoints;
+    Double[] credits;
+    String[] grades;
+    ArrayList<Grade> gradeArrayList;
+    ArrayList<Credit> creditArrayList;
     private Button btnAdd;
     private Button btnReset;
     private TextView warningMsg;
@@ -30,42 +42,53 @@ public class CalculatorFragment extends Fragment {
     private EditText totalCreditEt;
     private EditText gpaEt;
     private View rootView;
-    private ArrayList<GradePoint> gradePointArrayList;
+    private ArrayList<GradePointAverage> gradePointAverageArrayList;
+    GridView gridViewCredit;
+    GridView gridViewGrade;
+    private GradeRepo gradeRepo;
+    private CreditRepo creditRepo;
 
     public CalculatorFragment() {
-        creditButtons = new LinkedHashMap<Integer, Button>();
-        gradeButtons = new LinkedHashMap<Integer, Button>();
+        gradeArrayList = new ArrayList<Grade>();
+        creditArrayList = new ArrayList<Credit>();
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
+        gradeRepo = new GradeRepo(getActivity());
+        creditRepo = new CreditRepo(getActivity());
+        initValues();
         grabUiReferences();
         setToDefault();
         setListeners();
         return rootView;
     }
 
+    private void initValues() {
+        int i=0;
+        creditArrayList = creditRepo.getAll();
+        gradeArrayList = gradeRepo.getAll();
+        grades = new String[gradeArrayList.size()];
+        credits = new Double[creditArrayList.size()];
+        gradesPoints = new Double[gradeArrayList.size()];
+
+        for (Grade grade : gradeArrayList){
+            grades[i] = grade.getGradeName();
+            gradesPoints[i] = grade.getGradePoint();
+            i++;
+        }
+
+        i=0;
+        for(Credit credit : creditArrayList){
+            credits[i] = credit.getCreditValue();
+            i++;
+        }
+    }
+
     private void setListeners() {
-
-        for (final Map.Entry<Integer, Button> btn : creditButtons.entrySet()) {
-            btn.getValue().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    creditEt.setText(String.valueOf(credits[btn.getKey()]));
-                }
-            });
-        }
-
-        for (final Map.Entry<Integer, Button> btn : gradeButtons.entrySet()) {
-            btn.getValue().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    gradeEt.setText(String.valueOf(gradePoints[btn.getKey()]));
-                }
-            });
-        }
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,10 +102,10 @@ public class CalculatorFragment extends Fragment {
             public void onClick(View v) {
                 if(isAddValid()){
                     warningMsg.setVisibility(View.GONE);
-                    gradePointArrayList.add(new GradePoint(Double.valueOf(creditEt.getText().toString()),
+                    gradePointAverageArrayList.add(new GradePointAverage(Double.valueOf(creditEt.getText().toString()),
                             Double.valueOf(gradeEt.getText().toString())));
-                    totalCreditEt.setText(GradePoint.totalCredit(gradePointArrayList)+"");
-                    gpaEt.setText(GradePoint.GradePointAverage(gradePointArrayList)+"");
+                    totalCreditEt.setText(GradePointAverage.totalCredit(gradePointAverageArrayList)+"");
+                    gpaEt.setText(GradePointAverage.GradePointAverage(gradePointAverageArrayList)+"");
                     creditEt.setText("0.00");
                     gradeEt.setText("0.00");
                 } else {
@@ -105,26 +128,16 @@ public class CalculatorFragment extends Fragment {
         gradeEt.setText("0.00");
         totalCreditEt.setText("0.00");
         gpaEt.setText("0.00");
-        gradePointArrayList = new ArrayList<GradePoint>();
+        gradePointAverageArrayList = new ArrayList<GradePointAverage>();
     }
 
     private void grabUiReferences() {
-        
-        creditButtons.put(0, (Button) rootView.findViewById(R.id.btn_cr_1));
-        creditButtons.put(1, (Button) rootView.findViewById(R.id.btn_cr_2));
-        creditButtons.put(2, (Button) rootView.findViewById(R.id.btn_cr_3));
-        creditButtons.put(3, (Button) rootView.findViewById(R.id.btn_cr_4));
 
-        gradeButtons.put(0, (Button) rootView.findViewById(R.id.btn_gr_1));
-        gradeButtons.put(1, (Button) rootView.findViewById(R.id.btn_gr_2));
-        gradeButtons.put(2, (Button) rootView.findViewById(R.id.btn_gr_3));
-        gradeButtons.put(3, (Button) rootView.findViewById(R.id.btn_gr_4));
-        gradeButtons.put(4, (Button) rootView.findViewById(R.id.btn_gr_5));
-        gradeButtons.put(5, (Button) rootView.findViewById(R.id.btn_gr_6));
-        gradeButtons.put(6, (Button) rootView.findViewById(R.id.btn_gr_7));
-        gradeButtons.put(7, (Button) rootView.findViewById(R.id.btn_gr_8));
-        gradeButtons.put(8, (Button) rootView.findViewById(R.id.btn_gr_9));
-        gradeButtons.put(9, (Button) rootView.findViewById(R.id.btn_gr_10));
+        gridViewCredit = (GridView)rootView.findViewById(R.id.grid_view_credit);
+        gridViewCredit.setAdapter(new CreditAdapter(getActivity(),credits,CalculatorFragment.this));
+
+        gridViewGrade = (GridView)rootView.findViewById(R.id.grid_view_grade);
+        gridViewGrade.setAdapter(new GradeAdapter(getActivity(),grades,CalculatorFragment.this));
 
         btnAdd = (Button) rootView.findViewById(R.id.btn_add);
         btnReset = (Button) rootView.findViewById(R.id.btn_reset);
@@ -134,5 +147,15 @@ public class CalculatorFragment extends Fragment {
         gradeEt = (EditText) rootView.findViewById(R.id.et_grade);
         totalCreditEt = (EditText) rootView.findViewById(R.id.et_total_cr);
         gpaEt = (EditText) rootView.findViewById(R.id.et_gpa);
+    }
+
+    @Override
+    public void onCreditSelectedListener(int position) {
+        creditEt.setText(String.valueOf(credits[position]));
+    }
+
+    @Override
+    public void onGradeSelectedListener(int position) {
+        gradeEt.setText(String.valueOf(gradesPoints[position]));
     }
 }

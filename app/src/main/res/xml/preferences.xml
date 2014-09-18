@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 48dp top margin -->
+    <!--<Preference />-->
+    <PreferenceCategory
+        android:key="pref_display"
+        android:title="@string/pref_display">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_sync"
+            android:summary="@string/pref_background_color"
+            android:title="@string/pref_background_color" />
+        <ListPreference
+            android:defaultValue="@string/pref_background_color_default"
+            android:dependency="pref_sync"
+            android:dialogTitle="@string/pref_background_color"
+            android:entries="@array/pref_background_color_entries"
+            android:entryValues="@array/pref_background_color_values"
+            android:key="pref_background_color"
+            android:title="@string/pref_background_color" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_credits"
+        android:title="@string/pref_credits"></PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:key="pref_grades"
+        android:title="@string/pref_grades"></PreferenceCategory>
+
+
+</PreferenceScreen>
