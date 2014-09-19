@@ -3,6 +3,14 @@
 
     <!-- 48dp top margin -->
     <!--<Preference />-->
+    <PreferenceCategory android:title="Settings">
+
+        <Preference android:title="Default"
+            android:key="pref_reset"
+            android:summary="Set to default settings"/>
+
+    </PreferenceCategory>
+
     <PreferenceCategory
         android:key="pref_display"
         android:title="@string/pref_display">

@@ -34,11 +34,20 @@ public class GradeRepo extends BaseRepo {
 
     public void createOrUpdateGradePreference(Grade grade){
         openReadableDb();
-        if((gpaDbHelper.getGrade(grade.getGradeId(),dbReadable)).getGradePoint()!=0.0){
-            gpaDbHelper.updateGrade(grade, dbReadable);
+        openWritableDb();
+        Double d = gpaDbHelper.getGrade(grade.getGradeId(),dbReadable).getGradePoint();
+        if(d!=null){
+            gpaDbHelper.updateGrade(grade, dbWritable);
         } else
-            gpaDbHelper.insertGrade(grade,dbReadable);
+            gpaDbHelper.insertGrade(grade,dbWritable);
 
         closeReadableDb();
+        closeWritableDb();
+    }
+
+    public void deleteGradePreference(Grade grade) {
+        openWritableDb();
+        gpaDbHelper.deleteGrade(grade,dbWritable);
+        closeWritableDb();
     }
 }

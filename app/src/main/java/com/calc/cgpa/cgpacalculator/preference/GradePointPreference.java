@@ -1,7 +1,6 @@
 package com.calc.cgpa.cgpacalculator.preference;
 
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,34 +18,38 @@ import com.calc.cgpa.cgpacalculator.R;
 
 /**
  * A simple {@link Fragment} subclass.
- *
  */
-public class GradePointPreference extends DialogPreference {
+public class GradePointPreference extends BasePreference {
 
     private EditText newGrade;
     private EditText newGradePoint;
     private Grade grade;
     private IGradeUpdatePreference callback;
 
-    public GradePointPreference(Context context,AttributeSet attrs,IGradeUpdatePreference callback,Grade grade) {
-        // Required empty public constructor
-        super(context,attrs);
+
+    public GradePointPreference(Context context, AttributeSet attrs, IGradeUpdatePreference callback, Grade grade) {
+        super(context, attrs);
 
         this.grade = grade;
-        this.callback=callback;
+        this.callback = callback;
         setDialogLayoutResource(R.layout.fragment_grade_point_preference);
     }
 
     public interface IGradeUpdatePreference {
         public void GradePreferenceUpdated(Grade grade);
+
+        public void GradePreferenceDeleted(Grade grade);
     }
 
 
     @Override
     protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
         builder.setTitle("Grade Details");
-        builder.setNegativeButton("Save", null);
-        builder.setNegativeButton("Close",this);
+        builder.setPositiveButton("Save", null);
+        if (grade.getGradeName() != "") {
+            builder.setNeutralButton("Delete", null);
+        }
+        builder.setNegativeButton("Close", this);
 
         super.onPrepareDialogBuilder(builder);
     }
@@ -58,7 +61,7 @@ public class GradePointPreference extends DialogPreference {
         try {
             grabViews(view);
             setValues();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -69,27 +72,18 @@ public class GradePointPreference extends DialogPreference {
     }
 
     private void grabViews(View view) {
-        newGrade = (EditText)view.findViewById(R.id.preference_et_grade);
-        newGradePoint = (EditText)view.findViewById(R.id.preference_et_grade_point);
+        newGrade = (EditText) view.findViewById(R.id.preference_et_grade);
+        newGradePoint = (EditText) view.findViewById(R.id.preference_et_grade_point);
     }
 
     @Override
-    protected void showDialog(Bundle state) {
-        super.showDialog(state);
-
-        Button saveBtn = ((AlertDialog)getDialog()).getButton(DialogInterface.BUTTON_POSITIVE);
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onDialogClose();
-            }
-        });
-    }
-
-    private void onDialogClose() {
+    public void onDialogClose(View v) {
         grade.setGradeName(newGrade.getText().toString());
         grade.setGradePoint(Double.valueOf(newGradePoint.getText().toString()));
         getDialog().dismiss();
-        callback.GradePreferenceUpdated(grade);
+        if (v == saveBtn)
+            callback.GradePreferenceUpdated(grade);
+        else if (v == deleteBtn)
+            callback.GradePreferenceDeleted(grade);
     }
 }

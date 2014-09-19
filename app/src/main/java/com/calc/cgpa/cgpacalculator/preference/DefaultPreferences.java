@@ -48,4 +48,9 @@ public class DefaultPreferences {
     }
 
 
+    public void resetApp(){
+        gradeRepo.resetRepo();
+        setDefaultCredits();
+        setDefaultGrades();
+    }
 }

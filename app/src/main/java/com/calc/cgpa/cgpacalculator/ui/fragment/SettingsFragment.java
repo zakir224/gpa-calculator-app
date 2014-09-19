@@ -1,6 +1,7 @@
 package com.calc.cgpa.cgpacalculator.ui.fragment;
 
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.widget.Toast;
@@ -8,6 +9,7 @@ import android.widget.Toast;
 import com.calc.cgpa.cgpacalculator.model.Credit;
 import com.calc.cgpa.cgpacalculator.preference.CreditPreference;
 import com.calc.cgpa.cgpacalculator.model.Grade;
+import com.calc.cgpa.cgpacalculator.preference.DefaultPreferences;
 import com.calc.cgpa.cgpacalculator.preference.GradePointPreference;
 import com.calc.cgpa.cgpacalculator.R;
 import com.calc.cgpa.cgpacalculator.db.CreditRepo;
@@ -21,12 +23,13 @@ import java.util.ArrayList;
  * Created by Shahab on 11/1/13.
  */
 public class SettingsFragment extends PreferenceFragment implements
-        GradePointPreference.IGradeUpdatePreference, CreditPreference.ICreditUpdatePreference {
+        GradePointPreference.IGradeUpdatePreference, CreditPreference.ICreditUpdatePreference,Preference.OnPreferenceClickListener {
 
     private ArrayList<Grade> gradeList;
     private ArrayList<Credit> creditArrayList;
     private GradeRepo gradeRepo;
     private CreditRepo creditRepo;
+    DefaultPreferences defaultPreferences;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +38,19 @@ public class SettingsFragment extends PreferenceFragment implements
         gradeList = new ArrayList<Grade>();
         gradeRepo = new GradeRepo(getActivity());
         creditRepo = new CreditRepo(getActivity());
-
+        defaultPreferences = new DefaultPreferences(getActivity());
+        setupListeners();
         buildUserList();
 
     }
 
+    private void setupListeners() {
+        android.preference.Preference resetApp = findPreference("pref_reset");
 
+        if (resetApp != null)
+            resetApp.setOnPreferenceClickListener(this);
+
+    }
 
     private void buildUserList() {
 
@@ -101,6 +111,13 @@ public class SettingsFragment extends PreferenceFragment implements
     }
 
     @Override
+    public void GradePreferenceDeleted(Grade grade) {
+        gradeRepo.deleteGradePreference(grade);
+        Toast.makeText(getActivity(),"Grade Deleted",Toast.LENGTH_SHORT).show();
+        buildUserList();
+    }
+
+    @Override
     public void CreditPreferenceUpdated(Credit credit) {
         creditRepo.createOrUpdateCreditPreference(credit);
         Toast.makeText(getActivity(),"Credits Updated",Toast.LENGTH_SHORT).show();
@@ -112,5 +129,28 @@ public class SettingsFragment extends PreferenceFragment implements
         creditRepo.deleteCreditPreference(credit);
         Toast.makeText(getActivity(),"Credit Deleted",Toast.LENGTH_SHORT).show();
         buildUserList();
+    }
+
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+        try {
+            if (preference == null) return false;
+
+            String key = preference.getKey();
+
+            if (key == null || key.isEmpty()) return false;
+
+            if (key.equals("pref_reset")) {
+
+                defaultPreferences.resetApp();
+                buildUserList();
+                Toast.makeText(getActivity(),"Settings updated",Toast.LENGTH_SHORT).show();
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return true;
     }
 }

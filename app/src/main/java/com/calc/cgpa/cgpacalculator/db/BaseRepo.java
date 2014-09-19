@@ -16,6 +16,11 @@ public class BaseRepo {
         gpaDbHelper = new GpaDbHelper(context);
     }
 
+    public void resetRepo(){
+        openWritableDb();
+        gpaDbHelper.resetDb(dbWritable);
+        closeWritableDb();
+    }
     protected void openReadableDb(){
         dbReadable = gpaDbHelper.getReadableDatabase();
     }

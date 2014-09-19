@@ -48,9 +48,16 @@ public class GpaDbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + CREATE_TABLE_CREDIT);
-        db.execSQL("DROP TABLE IF EXISTS " + CREATE_TABLE_GRADE);
-        db.execSQL("DROP TABLE IF EXISTS " + CREATE_TABLE_SEMESTER_RESULT);
+        db.execSQL("DROP TABLE IF EXISTS " + GPAContract.CreditEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + GPAContract.GradeEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + GPAContract.SemesterResultEntry.TABLE_NAME);
+        onCreate(db);
+    }
+
+    public void resetDb(SQLiteDatabase db){
+        db.execSQL("DROP TABLE IF EXISTS " + GPAContract.CreditEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + GPAContract.GradeEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + GPAContract.SemesterResultEntry.TABLE_NAME);
         onCreate(db);
     }
 
@@ -62,7 +69,6 @@ public class GpaDbHelper extends SQLiteOpenHelper{
 
         Cursor c = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
         if (c.moveToFirst()) {
             do {
                 Grade grade = new Grade();
@@ -84,7 +90,6 @@ public class GpaDbHelper extends SQLiteOpenHelper{
 
         Cursor c = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
         if (c.moveToFirst()) {
             do {
                 Credit grade = new Credit();
@@ -158,10 +163,6 @@ public class GpaDbHelper extends SQLiteOpenHelper{
         }
     }
 
-    public void checkCredit(Credit credit){
-
-    }
-
     public void deleteCredit(Credit credit,SQLiteDatabase db) {
         db.delete(GPAContract.CreditEntry.TABLE_NAME, KEY_ID + " = ?",
                 new String[]{String.valueOf(credit.getCreditId())});
@@ -216,5 +217,10 @@ public class GpaDbHelper extends SQLiteOpenHelper{
 
         return db.update(GPAContract.GradeEntry.TABLE_NAME, values, KEY_ID + " = ?",
                 new String[] {  String.valueOf(grade.getGradeId()) });
+    }
+
+    public void deleteGrade(Grade grade,SQLiteDatabase db) {
+        db.delete(GPAContract.GradeEntry.TABLE_NAME, KEY_ID + " = ?",
+                new String[]{String.valueOf(grade.getGradeId())});
     }
 }

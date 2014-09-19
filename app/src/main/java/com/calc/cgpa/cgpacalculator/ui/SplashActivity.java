@@ -24,10 +24,8 @@ public class SplashActivity extends Activity {
         if(!defaultPreferences.doesDatabaseExist()){
             defaultPreferences.setDefaultCredits();
             defaultPreferences.setDefaultGrades();
-            Toast.makeText(getBaseContext(),"Application loading for the first time",Toast.LENGTH_SHORT).show();
         }
         startActivity(new Intent(SplashActivity.this,MainActivity.class));
-        Toast.makeText(getBaseContext(),"Done",Toast.LENGTH_SHORT).show();
     }
 
     private void initializeApp() {
