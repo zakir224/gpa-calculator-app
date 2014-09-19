@@ -16,5 +16,6 @@
     <string name="pref_background_color">Backgroud Color</string>
     <string name="pref_background_color_default">#fff4f4f4</string>
     <string name="pref_display">Display</string>
+    <string name="action_save">Save</string>
 
 </resources>

@@ -104,7 +104,7 @@ public class CalculatorFragment extends Fragment implements CreditAdapter.Credit
             @Override
             public void onClick(View v) {
                 if(isAddValid()){
-                    warningMsg.setVisibility(View.GONE);
+//                    warningMsg.setVisibility(View.GONE);
                     gradePointAverageArrayList.add(new GradePointAverage(Double.valueOf(creditEt.getText().toString()),
                             Double.valueOf(gradeEt.getText().toString())));
                     totalCreditEt.setText(GradePointAverage.totalCredit(gradePointAverageArrayList)+"");
@@ -112,8 +112,8 @@ public class CalculatorFragment extends Fragment implements CreditAdapter.Credit
                     creditEt.setText("0.00");
                     gradeEt.setText("0.00");
                 } else {
-                    warningMsg.setText("Enter Grade Point and Credit");
-                    warningMsg.setVisibility(View.VISIBLE);
+//                    warningMsg.setText("Enter Grade Point and Credit");
+//                    warningMsg.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -126,7 +126,7 @@ public class CalculatorFragment extends Fragment implements CreditAdapter.Credit
     }
 
     private void setToDefault() {
-        warningMsg.setVisibility(View.GONE);
+//        warningMsg.setVisibility(View.GONE);
         creditEt.setText("0.00");
         gradeEt.setText("0.00");
         totalCreditEt.setText("0.00");
@@ -145,7 +145,7 @@ public class CalculatorFragment extends Fragment implements CreditAdapter.Credit
         btnAdd = (Button) rootView.findViewById(R.id.btn_add);
         btnReset = (Button) rootView.findViewById(R.id.btn_reset);
 
-        warningMsg = (TextView)rootView.findViewById(R.id.tv_msg);
+//        warningMsg = (TextView)rootView.findViewById(R.id.tv_msg);
         creditEt = (EditText) rootView.findViewById(R.id.et_credit);
         gradeEt = (EditText) rootView.findViewById(R.id.et_grade);
         totalCreditEt = (EditText) rootView.findViewById(R.id.et_total_cr);

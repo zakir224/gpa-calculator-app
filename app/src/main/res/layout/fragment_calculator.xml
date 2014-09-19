@@ -62,7 +62,7 @@
         <GridView
             android:id="@+id/grid_view_credit"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="60dp"
             android:columnWidth="90dp"
             android:numColumns="4"
             android:verticalSpacing="10dp"
@@ -89,7 +89,8 @@
         <GridView
             android:id="@+id/grid_view_grade"
             android:layout_width="match_parent"
-            android:layout_height="112dp"
+            android:layout_height="110dp"
+            android:layout_weight="1"
             android:columnWidth="90dp"
             android:numColumns="4"
             android:paddingBottom="8dp"
@@ -114,13 +115,6 @@
                 android:layout_marginRight="0dp"
                 android:text="RES" />
         </LinearLayout>
-
-        <TextView
-            style="@style/AppTheme.TextView"
-            android:textColor="#ffff5f66"
-            android:text="Warning text"
-            android:visibility="gone"
-            android:id="@+id/tv_msg"/>
     </LinearLayout>
 
 </LinearLayout>
