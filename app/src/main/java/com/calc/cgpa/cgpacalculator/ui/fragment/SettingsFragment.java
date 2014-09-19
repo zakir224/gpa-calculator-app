@@ -100,6 +100,15 @@ public class SettingsFragment extends PreferenceFragment implements
 
     @Override
     public void CreditPreferenceUpdated(Credit credit) {
-        Toast.makeText(getActivity(),"Credit will be updated",Toast.LENGTH_SHORT).show();
+        creditRepo.createOrUpdateCreditPreference(credit);
+        Toast.makeText(getActivity(),"Credits Updated",Toast.LENGTH_SHORT).show();
+        buildUserList();
+    }
+
+    @Override
+    public void CreditPreferenceDeleted(Credit credit) {
+        creditRepo.deleteCreditPreference(credit);
+        Toast.makeText(getActivity(),"Credit Deleted",Toast.LENGTH_SHORT).show();
+        buildUserList();
     }
 }

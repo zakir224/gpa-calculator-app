@@ -89,6 +89,7 @@ public class GradePointPreference extends DialogPreference {
     private void onDialogClose() {
         grade.setGradeName(newGrade.getText().toString());
         grade.setGradePoint(Double.valueOf(newGradePoint.getText().toString()));
+        getDialog().dismiss();
         callback.GradePreferenceUpdated(grade);
     }
 }

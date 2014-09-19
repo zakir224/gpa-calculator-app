@@ -157,4 +157,38 @@ public class GpaDbHelper extends SQLiteOpenHelper{
             e.printStackTrace();
         }
     }
+
+    public void checkCredit(Credit credit){
+
+    }
+
+    public void deleteCredit(Credit credit,SQLiteDatabase db) {
+        db.delete(GPAContract.CreditEntry.TABLE_NAME, KEY_ID + " = ?",
+                new String[] { String.valueOf(credit.getCreditId()) });
+    }
+
+    public int updateCredit(Credit credit,SQLiteDatabase db) {
+
+        ContentValues values = new ContentValues();
+        values.put(GPAContract.CreditEntry.COLUMN_NAME_CREDIT_VALUE, credit.getCreditValue());
+
+        return db.update(GPAContract.CreditEntry.TABLE_NAME, values, KEY_ID + " = ?",
+                new String[] {  String.valueOf(credit.getCreditId()) });
+    }
+
+    public Credit getCredit(int id,SQLiteDatabase db) {
+
+        String selectQuery = "SELECT  * FROM " + GPAContract.CreditEntry.TABLE_NAME+" WHERE "+KEY_ID+"="+id;
+        Credit credit = new Credit();
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c.moveToFirst()) {
+                credit.setCreditId(c.getInt((c.getColumnIndex(KEY_ID))));
+                credit.setCreditValue((c.getDouble(c.getColumnIndex(GPAContract.CreditEntry.COLUMN_NAME_CREDIT_VALUE))));
+        }
+
+        return credit;
+    }
 }

@@ -1,6 +1,8 @@
 package com.calc.cgpa.cgpacalculator.preference;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.calc.cgpa.cgpacalculator.model.Credit;
 import com.calc.cgpa.cgpacalculator.model.Grade;
@@ -44,5 +46,6 @@ public class DefaultPreferences {
         File dbFile = context.getDatabasePath(GpaDbHelper.DATABASE_NAME);
         return dbFile.exists();
     }
+
 
 }

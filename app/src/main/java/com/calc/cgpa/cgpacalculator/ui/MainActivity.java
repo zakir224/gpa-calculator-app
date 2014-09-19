@@ -1,10 +1,13 @@
 package com.calc.cgpa.cgpacalculator.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.calc.cgpa.cgpacalculator.ui.fragment.CalculatorFragment;
 import com.calc.cgpa.cgpacalculator.R;
@@ -44,8 +47,5 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
 
 }

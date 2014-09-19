@@ -1,6 +1,7 @@
 package com.calc.cgpa.cgpacalculator.db;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.calc.cgpa.cgpacalculator.model.Credit;
 
@@ -28,6 +29,22 @@ public class CreditRepo extends BaseRepo {
     public void AddCredit(Credit credit){
         openWritableDb();
         gpaDbHelper.insertCredit(credit,dbWritable);
+        closeWritableDb();
+    }
+
+    public void createOrUpdateCreditPreference(Credit credit){
+        openReadableDb();
+          if(((Credit)gpaDbHelper.getCredit(credit.getCreditId(),dbReadable)).getCreditValue()!=0.0){
+              gpaDbHelper.updateCredit(credit, dbReadable);
+          } else
+              gpaDbHelper.insertCredit(credit,dbReadable);
+
+        closeReadableDb();
+    }
+
+    public void deleteCreditPreference(Credit credit) {
+        openWritableDb();
+        gpaDbHelper.deleteCredit(credit,dbWritable);
         closeWritableDb();
     }
 }

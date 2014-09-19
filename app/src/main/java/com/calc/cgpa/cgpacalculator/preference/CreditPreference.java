@@ -26,6 +26,8 @@ public class CreditPreference extends DialogPreference {
     private EditText newGradePoint;
     private Credit credit;
     private ICreditUpdatePreference callback;
+    private Button deleteBtn;
+    private Button saveBtn;
 
     public CreditPreference(Context context, AttributeSet attrs, ICreditUpdatePreference callback, Credit credit) {
         // Required empty public constructor
@@ -37,13 +39,17 @@ public class CreditPreference extends DialogPreference {
 
     public interface ICreditUpdatePreference {
         public void CreditPreferenceUpdated(Credit credit);
+        public void CreditPreferenceDeleted(Credit credit);
     }
 
 
     @Override
     protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
         builder.setTitle("Credit hrs.");
-        builder.setNegativeButton("Save", null);
+        builder.setPositiveButton("Save", null);
+        if(credit.getCreditValue()!=0.0){
+            builder.setNeutralButton("Delete",null);
+        }
         builder.setNegativeButton("Close",this);
 
         super.onPrepareDialogBuilder(builder);
@@ -73,17 +79,30 @@ public class CreditPreference extends DialogPreference {
     protected void showDialog(Bundle state) {
         super.showDialog(state);
 
-        Button saveBtn = ((AlertDialog)getDialog()).getButton(DialogInterface.BUTTON_POSITIVE);
+        saveBtn = ((AlertDialog)getDialog()).getButton(DialogInterface.BUTTON_POSITIVE);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onDialogClose();
+                onDialogClose(saveBtn);
+            }
+        });
+
+        deleteBtn = ((AlertDialog)getDialog()).getButton(DialogInterface.BUTTON_NEUTRAL);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDialogClose(deleteBtn);
             }
         });
     }
 
-    private void onDialogClose() {
-        credit.setCreditValue(Double.valueOf(newCredit.getText().toString()));
-        callback.CreditPreferenceUpdated(credit);
+    private void onDialogClose(View v) {
+        getDialog().dismiss();
+        if(v==saveBtn){
+            credit.setCreditValue(Double.valueOf(newCredit.getText().toString()));
+            callback.CreditPreferenceUpdated(credit);
+        } else if(v==deleteBtn){
+            callback.CreditPreferenceDeleted(credit);
+        }
     }
 }

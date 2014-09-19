@@ -10,8 +10,9 @@ public class BaseRepo {
     GpaDbHelper gpaDbHelper;
     SQLiteDatabase dbReadable;
     SQLiteDatabase dbWritable;
-
+    Context context;
     protected BaseRepo(Context context){
+        this.context = context;
         gpaDbHelper = new GpaDbHelper(context);
     }
 
