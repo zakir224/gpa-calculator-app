@@ -17,7 +17,7 @@ public class CreditRepo extends BaseRepo {
     }
 
     public ArrayList<Credit> getAll(){
-        ArrayList<Credit> credits;// = new ArrayList<Credit>();
+        ArrayList<Credit> credits;
 
         openReadableDb();
         credits = gpaDbHelper.getCreditEntries(dbReadable);

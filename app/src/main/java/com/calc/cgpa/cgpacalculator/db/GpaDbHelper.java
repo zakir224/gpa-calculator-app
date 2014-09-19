@@ -164,7 +164,7 @@ public class GpaDbHelper extends SQLiteOpenHelper{
 
     public void deleteCredit(Credit credit,SQLiteDatabase db) {
         db.delete(GPAContract.CreditEntry.TABLE_NAME, KEY_ID + " = ?",
-                new String[] { String.valueOf(credit.getCreditId()) });
+                new String[]{String.valueOf(credit.getCreditId())});
     }
 
     public int updateCredit(Credit credit,SQLiteDatabase db) {
@@ -190,5 +190,31 @@ public class GpaDbHelper extends SQLiteOpenHelper{
         }
 
         return credit;
+    }
+
+    public Grade getGrade(int id,SQLiteDatabase db) {
+
+        String selectQuery = "SELECT  * FROM " + GPAContract.GradeEntry.TABLE_NAME+" WHERE "+KEY_ID+"="+id;
+        Grade grade = new Grade();
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c.moveToFirst()) {
+            grade.setGradeId(c.getInt((c.getColumnIndex(KEY_ID))));
+            grade.setGradeName((c.getString(c.getColumnIndex(GPAContract.GradeEntry.COLUMN_NAME_GRADE_NAME))));
+            grade.setGradePoint((c.getDouble(c.getColumnIndex(GPAContract.GradeEntry.COLUMN_NAME_GRADE_POINT))));
+        }
+
+        return grade;
+    }
+
+    public int updateGrade(Grade grade, SQLiteDatabase db) {
+        ContentValues values = new ContentValues();
+        values.put(GPAContract.GradeEntry.COLUMN_NAME_GRADE_NAME, grade.getGradeName());
+        values.put(GPAContract.GradeEntry.COLUMN_NAME_GRADE_POINT, grade.getGradePoint());
+
+        return db.update(GPAContract.GradeEntry.TABLE_NAME, values, KEY_ID + " = ?",
+                new String[] {  String.valueOf(grade.getGradeId()) });
     }
 }

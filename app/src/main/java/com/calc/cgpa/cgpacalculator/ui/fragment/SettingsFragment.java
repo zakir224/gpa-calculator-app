@@ -95,7 +95,9 @@ public class SettingsFragment extends PreferenceFragment implements
 
     @Override
     public void GradePreferenceUpdated(Grade grade) {
-        Toast.makeText(getActivity(),"Grade will be updated",Toast.LENGTH_SHORT).show();
+        gradeRepo.createOrUpdateGradePreference(grade);
+        Toast.makeText(getActivity(),"Grades updated",Toast.LENGTH_SHORT).show();
+        buildUserList();
     }
 
     @Override
