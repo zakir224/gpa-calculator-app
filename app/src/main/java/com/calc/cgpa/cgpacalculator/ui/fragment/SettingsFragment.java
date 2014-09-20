@@ -81,7 +81,7 @@ public class SettingsFragment extends PreferenceFragment implements
 
         GradePointPreference preference = new GradePointPreference(getActivity(), null, this, new Grade("",0.0));
         preference.setTitle(R.string.pref_add);
-        preference.setSummary(R.string.pref_grade_summary);
+        preference.setSummary(R.string.pref_add_grade);
         targetCategory.addPreference(preference);
 
         PreferenceCategory targetCategoryCredits = (PreferenceCategory)findPreference("pref_credits");

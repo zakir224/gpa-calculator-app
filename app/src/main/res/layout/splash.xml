@@ -6,10 +6,11 @@
               android:weightSum="1">
 
     <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:id="@+id/call_button" android:src="@drawable/ic_launcher" android:layout_gravity="center_horizontal"
-            android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:id="@+id/call_button" android:src="@drawable/logo" android:layout_gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <ProgressBar
         android:layout_width="wrap_content"

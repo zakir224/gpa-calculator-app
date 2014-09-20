@@ -3,6 +3,8 @@ package com.calc.cgpa.cgpacalculator.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.calc.cgpa.cgpacalculator.preference.DefaultPreferences;
@@ -18,6 +20,7 @@ public class SplashActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         getActionBar().hide();
         setContentView(R.layout.splash);
         defaultPreferences = new DefaultPreferences(getBaseContext());
@@ -25,14 +28,13 @@ public class SplashActivity extends Activity {
             defaultPreferences.setDefaultCredits();
             defaultPreferences.setDefaultGrades();
         }
-        startActivity(new Intent(SplashActivity.this,MainActivity.class));
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashActivity.this,MainActivity.class));
+            }
+        },3000);
+
     }
-
-    private void initializeApp() {
-
-    }
-
-
-
 
 }
