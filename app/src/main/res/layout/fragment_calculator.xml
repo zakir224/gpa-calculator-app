@@ -107,14 +107,16 @@
 
             <Button
                 android:id="@+id/btn_add"
+                android:layout_width="100dp"
                 style="@style/AppTheme.Button"
                 android:text="ADD" />
 
             <Button
                 android:id="@+id/btn_reset"
+                android:layout_width="100dp"
                 style="@style/AppTheme.Button"
                 android:layout_marginRight="0dp"
-                android:text="RES" />
+                android:text="RESET" />
         </LinearLayout>
     </LinearLayout>
 
