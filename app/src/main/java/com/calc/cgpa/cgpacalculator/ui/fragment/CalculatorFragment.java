@@ -1,5 +1,6 @@
 package com.calc.cgpa.cgpacalculator.ui.fragment;
 
+import android.app.DialogFragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.calc.cgpa.cgpacalculator.db.ResultRepo;
 import com.calc.cgpa.cgpacalculator.model.Credit;
 import com.calc.cgpa.cgpacalculator.model.Grade;
 import com.calc.cgpa.cgpacalculator.GradePointAverage;
@@ -22,6 +24,7 @@ import com.calc.cgpa.cgpacalculator.adapter.CreditAdapter;
 import com.calc.cgpa.cgpacalculator.adapter.GradeAdapter;
 import com.calc.cgpa.cgpacalculator.db.CreditRepo;
 import com.calc.cgpa.cgpacalculator.db.GradeRepo;
+import com.calc.cgpa.cgpacalculator.model.SemesterResult;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -29,7 +32,8 @@ import java.util.LinkedHashMap;
 /**
  * Created by Zakir on 9/17/2014.
  */
-public class CalculatorFragment extends Fragment implements CreditAdapter.CreditSelectedListener, GradeAdapter.GradeSelectedListener {
+public class CalculatorFragment extends Fragment implements CreditAdapter.CreditSelectedListener, GradeAdapter.GradeSelectedListener,
+        SaveGpaDialog.OnSaveDialogFragmentInteractionListener {
 
     Double[] gradesPoints;
     Double[] credits;
@@ -48,10 +52,14 @@ public class CalculatorFragment extends Fragment implements CreditAdapter.Credit
     private GridView gridViewGrade;
     private GradeRepo gradeRepo;
     private CreditRepo creditRepo;
+    private ResultRepo resultRepo;
+    private SemesterResult result;
+
 
     public CalculatorFragment() {
         gradeArrayList = new ArrayList<Grade>();
         creditArrayList = new ArrayList<Credit>();
+
 
     }
 
@@ -158,5 +166,22 @@ public class CalculatorFragment extends Fragment implements CreditAdapter.Credit
         grabUiReferences();
         setToDefault();
         setListeners();
+    }
+
+
+    public void saveGPa() {
+        //new DialogFragment().show(getActivity().getFragmentManager(),"save");
+        SaveGpaDialog.newInstance(totalCreditEt.getText().toString(),gpaEt.getText().toString(),this).show(getActivity().getFragmentManager(),"dlg");
+    }
+
+    @Override
+    public void onSaveGpaClicked(String s) {
+        resultRepo = new ResultRepo(getActivity());
+        result = new SemesterResult();
+        result.setSemesterName(s);
+        result.setSemesterTotalCredits(Double.valueOf(totalCreditEt.getText().toString()));
+        result.setSemesterGpa(Double.valueOf(gpaEt.getText().toString()));
+        resultRepo.addGrade(result);
+        Toast.makeText(getActivity(),"Saved",Toast.LENGTH_SHORT).show();
     }
 }

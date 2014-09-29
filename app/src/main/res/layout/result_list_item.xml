@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp"
+    android:background="#ffefefef">
+
+    <Button
+        android:layout_width="48dp"
+        android:layout_height="match_parent"
+        android:text="F"
+        android:enabled="false"
+        android:textSize="30sp"
+        android:id="@+id/result_view_btn"
+        android:background="#ff6d98f9" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fall-2013"
+            android:id="@+id/tv_semester_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Credit : 13.0"
+            android:id="@+id/tv_semester_total_credit" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GPA : 3.96"
+            android:id="@+id/tv_gpa" />
+    </LinearLayout>
+</LinearLayout>

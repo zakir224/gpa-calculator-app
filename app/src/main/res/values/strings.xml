@@ -18,5 +18,8 @@
     <string name="pref_background_color_default">#fff4f4f4</string>
     <string name="pref_display">Display</string>
     <string name="action_save">Save</string>
+    <string name="drawer_open">Options</string>
+    <string name="drawer_close">GPA Calculator</string>
+    <string name="title_activity_result_detail">Semester Results</string>
 
 </resources>

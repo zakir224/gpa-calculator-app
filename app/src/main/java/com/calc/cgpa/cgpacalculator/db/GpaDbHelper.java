@@ -104,7 +104,7 @@ public class GpaDbHelper extends SQLiteOpenHelper{
 
     public ArrayList<SemesterResult> getSemesterResultEntries(SQLiteDatabase db){
         ArrayList<SemesterResult> semesterResults = new ArrayList<SemesterResult>();
-        String selectQuery = "SELECT  * FROM " + GPAContract.GradeEntry.TABLE_NAME;
+        String selectQuery = "SELECT  * FROM " + GPAContract.SemesterResultEntry.TABLE_NAME;
 
         Log.e(LOG, selectQuery);
 

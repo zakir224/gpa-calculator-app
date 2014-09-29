@@ -7,11 +7,11 @@
         android:icon="@android:drawable/ic_menu_save"
         android:title="@string/action_save"
         android:orderInCategory="99"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="collapseActionView" />
 
     <item android:id="@+id/action_settings"
         android:icon="@android:drawable/ic_menu_manage"
         android:title="@string/action_settings"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:showAsAction="collapseActionView" />
 </menu>

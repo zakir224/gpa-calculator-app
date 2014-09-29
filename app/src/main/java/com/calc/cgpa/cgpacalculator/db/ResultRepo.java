@@ -25,7 +25,7 @@ public class ResultRepo extends BaseRepo{
         return semesterResults;
     }
 
-    public void AddGrade(SemesterResult semesterResult){
+    public void addGrade(SemesterResult semesterResult){
         openWritableDb();
         gpaDbHelper.insertSemesterResult(semesterResult,dbWritable);
         closeWritableDb();
