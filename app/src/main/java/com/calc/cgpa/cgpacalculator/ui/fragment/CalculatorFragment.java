@@ -119,8 +119,14 @@ public class CalculatorFragment extends Fragment implements CreditAdapter.Credit
     }
 
     private boolean isAddValid() {
-        if (Double.valueOf(creditEt.getText().toString()) == 0.0 || Double.valueOf(gradeEt.getText().toString()) == 0.0)
+        if (Double.valueOf(creditEt.getText().toString()) == 0.0){
+            Toast.makeText(getActivity(),"Choose number of credits",Toast.LENGTH_SHORT).show();
             return false;
+        }
+        else if(Double.valueOf(gradeEt.getText().toString()) == 0.0){
+            Toast.makeText(getActivity(),"Choose Grade",Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 

@@ -11,7 +11,6 @@
     <string-array name="options_array">
         <item>CGPA Calculator</item>
         <item>Result History</item>
-        <item>Grading System</item>
         <item>Settings</item>
         <item>About</item>
     </string-array>

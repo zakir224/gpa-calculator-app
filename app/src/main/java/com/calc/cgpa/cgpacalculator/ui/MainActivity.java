@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.calc.cgpa.cgpacalculator.ui.fragment.AboutFragment;
 import com.calc.cgpa.cgpacalculator.ui.fragment.CalculatorFragment;
 import com.calc.cgpa.cgpacalculator.R;
 import com.calc.cgpa.cgpacalculator.ui.fragment.ResultDetailFragment;
@@ -117,17 +118,8 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             switch (position){
-                case 0:
-                    selectItem(position);
-                    break;
-                case 1:
-                    selectItem(position);
-                    break;
-                case 2:
-                    mDrawerLayout.closeDrawer(mDrawerList);
-                    startActivity(new Intent(MainActivity.this,SettingsActivity.class));
-                    break;
                 default:
+                    selectItem(position);
                     break;
             }
         }
@@ -162,8 +154,16 @@ public class MainActivity extends ActionBarActivity {
             case 1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, new ResultDetailFragment()).commit();
                 break;
+            case 2:
+                mDrawerLayout.closeDrawer(mDrawerList);
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                break;
+            case 3:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, new AboutFragment()).commit();
+                break;
             default:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, new CalculatorFragment(),"calculator").commit();
+                break;
         }
 
 
